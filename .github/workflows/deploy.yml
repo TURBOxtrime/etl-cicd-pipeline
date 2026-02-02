@@ -18,8 +18,7 @@ jobs:
         python-version: '3.9'
 
     - name: Install dependencies
-      run: |
-        pip install boto3
+      run: pip install boto3
 
     - name: Upload Glue Job to S3
       run: |
@@ -40,16 +39,14 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
 
     - name: Trigger Glue Job
-      run: |
-        aws glue start-job-run --job-name $GLUE_JOB_NAME
+      run: aws glue start-job-run --job-name $GLUE_JOB_NAME
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
 
     - name: Trigger Glue Crawler
-      run: |
-        aws glue start-crawler --name $GLUE_CRAWLER_NAME
+      run: aws glue start-crawler --name $GLUE_CRAWLER_NAME
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
